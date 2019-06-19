@@ -2,7 +2,7 @@ const express = require("express");
 const cors = require("cors");
 
 var server = express();
-var port = 8080;
+var port = 8000;
 
 server.use(express.urlencoded({
     extended: false
@@ -18,6 +18,24 @@ server.get("/names", function(req, res) {
         names: data.names,
     }
     res.json(response);
+});
+
+server.post("/names", function(req, res) {
+    data.names.push(req.body.name);
+    res.status(201);
+    res.send();
+});
+
+server.get("/numbers", function(req, res) {
+    var response = {
+        numbers: data.numbers,
+    }
+    res.json(response);
+});
+server.post("/numbers", function(req, res) {
+    data.numbers.push(req.body.number);
+    res.status(201);
+    res.send();
 });
 
 server.get("/hotcold", function(req, res) {
